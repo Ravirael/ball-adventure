@@ -11,9 +11,14 @@ class RotationHandler(EventHandler):
         self.coordinate_system = coordinate_system
 
     def handle(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 3:
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 4:
             if self.shape.point_query(self.coordinate_system.screen_to_world(event.pos))[0] < 0:
                 self.shape.body.angle += self.rotation
                 return True
-        return False
 
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 5:
+            if self.shape.point_query(self.coordinate_system.screen_to_world(event.pos))[0] < 0:
+                self.shape.body.angle -= self.rotation
+                return True
+
+        return False

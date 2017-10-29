@@ -13,6 +13,7 @@ from scene.scene import Scene
 from scene.scenes import Scenes
 from scene.setup_scene import SetupScene
 from scene.simulation_scene import SimulationScene
+from scene.win_scene import WinScene
 
 
 class LevelBuilder:
@@ -26,10 +27,8 @@ class LevelBuilder:
         self.event_handlers = []
         self.nodes_factory = NodesFactory(space=self.space, coordinate_system=self.coordinate_system)
 
-        ball, circle = self.nodes_factory.create_circle(radius=20, body_type=pymunk.Body.DYNAMIC)
-        circle.collision_type = CollisionType.BALL
+        ball, circle = self.nodes_factory.create_ball(radius=20)
         self.ball_body = circle.body
-
         self.nodes.append(ball)
 
         self.event_handlers += [KeyboardEventHandler(
@@ -46,10 +45,15 @@ class LevelBuilder:
 
         self.target, self.target_shape = self.nodes_factory.create_target()
         self.nodes.append(self.target)
+        handler = self.space.add_collision_handler(CollisionType.BALL, CollisionType.TARGET)
+        handler.pre_solve = self.on_win
 
+    def on_win(self, x, y, z):
+        game_scene = self.scene_controller.pop()
+        game_scene.update_physics = False
+        self.scene_controller.push(WinScene(game_scene))
+        return True
 
-
-        #self.space.add_collision_handler(CollisionType.BALL, CollisionType.TARGET)
     def set_ball_position(self, position: (int, int)):
         self.ball_body.position = position
 

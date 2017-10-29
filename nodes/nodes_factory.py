@@ -50,9 +50,23 @@ class NodesFactory:
         self.space.add(body, circle)
         return Circle(PymunkCircleModel(circle, self.coordinate_system)), circle
 
+    def create_ball(
+            self,
+            radius: int,
+            position: (int, int) = (0, 0),
+            elasticity: float = 1.0
+    ) -> (Circle, pymunk.Circle):
+        body = pymunk.Body(1, 16000, pymunk.Body.DYNAMIC)
+        body.position = position
+        circle = pymunk.Circle(body, radius)
+        circle.collision_type = CollisionType.BALL
+        circle.elasticity = elasticity
+        self.space.add(body, circle)
+        return Circle(PymunkCircleModel(circle, self.coordinate_system)), circle
+
     def create_target(self) -> (Target, pymunk.Circle):
         body = pymunk.Body(1, 16000)
-        body.body_type = pymunk.Body.STATIC
+        body.body_type = pymunk.Body.KINEMATIC
         circle = pymunk.Circle(body, 50)
         circle.elasticity = 1.0
         circle.collision_type = CollisionType.TARGET

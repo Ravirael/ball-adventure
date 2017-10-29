@@ -23,6 +23,7 @@ class SetupScene(Scene):
         self.initial_ball_position = ball_body.position
 
     def handle(self, event):
+        print(event)
         for handler in self.event_handlers:
             if handler.handle(event):
                 return True

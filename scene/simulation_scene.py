@@ -13,6 +13,7 @@ class SimulationScene(Scene):
         self.ball_body = ball_body
         self.ball_initial_position = ball_body.position
         self.scene_controller = scene_controller
+        self.update_physics = True
 
     def handle(self, event: pygame.event.Event):
         if event.type == pygame.KEYDOWN:
@@ -23,7 +24,8 @@ class SimulationScene(Scene):
             node.draw(screen)
 
     def update(self, dt):
-        self.space.step(dt)
+        if self.update_physics:
+            self.space.step(dt)
         for node in self.nodes:
             node.update(dt)
         if self.ball_body.position[1] > 4000:
