@@ -1,4 +1,7 @@
-class CircleModel:
+from circle_model import CircleModel
+
+
+class PymunkCircleModel(CircleModel):
     def __init__(self, pymunk_circle, coordinate_system):
         self.coordinate_system = coordinate_system
         self.shape = pymunk_circle

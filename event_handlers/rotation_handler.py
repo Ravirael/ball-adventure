@@ -1,7 +1,7 @@
 import pygame
 
 from angle import Angle
-from event_handler import EventHandler
+from event_handlers.event_handler import EventHandler
 
 
 class RotationHandler(EventHandler):
@@ -14,4 +14,6 @@ class RotationHandler(EventHandler):
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 3:
             if self.shape.point_query(self.coordinate_system.screen_to_world(event.pos))[0] < 0:
                 self.shape.body.angle += self.rotation
+                return True
+        return False
 

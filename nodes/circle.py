@@ -1,10 +1,6 @@
 import pygame
 import pygame.gfxdraw
-import pymunk
-
-from pymun_circle_model import CircleModel
-from scene_node import SceneNode
-from vertices_getter import VerticesGetter
+from nodes.scene_node import SceneNode
 
 
 class Circle(SceneNode):
@@ -22,12 +18,3 @@ class Circle(SceneNode):
     def draw(self, screen):
         x, y = self.position
         self.draw_function(screen, int(x), int(y), int(self.radius), self.color)
-
-    def circle(space, body, radius, coordinate_system):
-        circle = pymunk.Circle(body, radius)
-        circle.elasticity = 1.0
-        space.add(body, circle)
-        return Circle(CircleModel(circle, coordinate_system)), circle
-
-    # def rectangle(space, body, size):
-    #     return Polygon.rectangle(space=space, body=body, width=size[0], height=size[1])
