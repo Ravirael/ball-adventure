@@ -67,7 +67,7 @@ class NodesFactory:
     def create_target(self) -> (Target, pymunk.Circle):
         body = pymunk.Body(1, 16000)
         body.body_type = pymunk.Body.KINEMATIC
-        circle = pymunk.Circle(body, 50)
+        circle = pymunk.Circle(body, 20)
         circle.elasticity = 1.0
         circle.collision_type = CollisionType.TARGET
         circle.sensor = True

@@ -6,7 +6,6 @@ from clock import Clock
 class Game:
     def __init__(self,scene,width=1280,height=720):
         self.time_per_frame = 1.0/60.0
-        pygame.init()
         self.screen = pygame.display.set_mode((width, height))
         self.scene = scene
 

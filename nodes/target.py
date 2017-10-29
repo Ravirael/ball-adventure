@@ -22,4 +22,4 @@ class Target(SceneNode):
         self.circle.draw(screen)
 
     def draw_handler(self, screen, x, y, radius, color):
-        pygame.gfxdraw.filled_circle(screen, x, y, int(self.multiplier * radius), color)
+        pygame.gfxdraw.circle(screen, x, y, int(self.multiplier * radius), color)
