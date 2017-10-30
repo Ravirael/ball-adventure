@@ -1,5 +1,6 @@
 import pymunk
 
+from angle import Angle
 from collision_types import CollisionType
 from nodes.circle import Circle
 from nodes.polygon import Polygon
@@ -19,10 +20,12 @@ class NodesFactory:
             height: int,
             body_type = pymunk.Body.KINEMATIC,
             position: (int, int) = (0, 0),
+            rotation: Angle = Angle.from_degrees(0),
             elasticity: float = 1.0
     ) -> (Polygon, pymunk.Poly):
         body = pymunk.Body(1, 16000, body_type)
         body.position = position
+        body.angle = rotation
         half_width = width/2
         half_height = height/2
         vertices = [

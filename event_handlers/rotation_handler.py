@@ -5,7 +5,7 @@ from event_handlers.event_handler import EventHandler
 
 
 class RotationHandler(EventHandler):
-    def __init__(self, shape, coordinate_system, rotation = Angle.from_degrees(15)):
+    def __init__(self, shape, coordinate_system, rotation = Angle.from_degrees(7.5)):
         self.shape = shape
         self.rotation = rotation
         self.coordinate_system = coordinate_system

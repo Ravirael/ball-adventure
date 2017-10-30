@@ -80,9 +80,9 @@ class LevelBuilder:
             height=height,
             body_type=pymunk.Body.STATIC,
             position=position,
+            rotation=rotation,
             elasticity=elasticity
         )
-        shape.body.angle = rotation
         self.nodes.append(node)
 
     def create_draggable_obstacle(self, position: (int, int), size: (int, int), rotation: Angle = Angle.from_degrees(0), elasticity: float = 1.0):

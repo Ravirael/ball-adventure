@@ -28,7 +28,7 @@ class SimulationScene(Scene):
             self.space.step(dt)
         for node in self.nodes:
             node.update(dt)
-        if self.ball_body.position[1] > 4000:
+        if self.ball_body.position[1] > 1500:
             self.reset()
 
     def reset(self):

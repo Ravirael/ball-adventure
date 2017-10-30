@@ -9,7 +9,7 @@ from nodes.scene_node import SceneNode
 
 class Target(SceneNode):
     def __init__(self, circle_model):
-        self.circle = Circle(circle_model=circle_model, draw_function=self.draw_handler, color=(255, 0, 255, 255))
+        self.circle = Circle(circle_model=circle_model, draw_function=self.draw_handler, color=(0, 255, 0, 255))
         self.time = 0
         self.multiplier = 1
 
