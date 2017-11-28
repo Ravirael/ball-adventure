@@ -3,23 +3,28 @@ from math import sin
 import pygame
 import pygame.gfxdraw
 
-from nodes.circle import Circle
 from nodes.scene_node import SceneNode
+
+
+def rot_center(image, rect, angle):
+    """rotate an image while keeping its center"""
+    rot_image = pygame.transform.rotate(image, angle)
+    rot_rect = rot_image.get_rect(center=rect.center)
+    return rot_image, rot_rect
 
 
 class Target(SceneNode):
     def __init__(self, circle_model):
-        self.circle = Circle(circle_model=circle_model, draw_function=self.draw_handler, color=(0, 255, 0, 255))
-        self.time = 0
-        self.multiplier = 1
+        self.circle = circle_model
+        self.image = pygame.image.load("star.png")
+        self.angle = 0
 
     def update(self, dt):
-        self.circle.update(dt)
-        self.time += dt
-        self.multiplier = 1 + sin(self.time * 4) * 0.15
+        self.angle += 90 * dt
+        if self.angle > 360: self.angle -= 360
 
     def draw(self, screen):
-        self.circle.draw(screen)
-
-    def draw_handler(self, screen, x, y, radius, color):
-        pygame.gfxdraw.circle(screen, x, y, int(self.multiplier * radius), color)
+        rect = self.image.get_rect()
+        rect.center = self.circle.center()
+        image, rect = rot_center(self.image, rect, self.angle)
+        screen.blit(image, rect)

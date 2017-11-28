@@ -4,7 +4,7 @@ from circle_model import CircleModel
 class ConstCircleModel(CircleModel):
     def __init__(self, position, radius, coordinate_system):
         self.coordinate_system = coordinate_system
-        self.positon = position
+        self.position = position
         self.radius = radius
 
     def center(self):

@@ -4,7 +4,7 @@ from nodes.scene_node import SceneNode
 
 
 class Circle(SceneNode):
-    def __init__(self, circle_model, draw_function = pygame.gfxdraw.circle, color = (255, 255, 255, 255)):
+    def __init__(self, circle_model, draw_function = pygame.gfxdraw.filled_circle, color = (0, 0, 255, 255)):
         self.circle_model = circle_model
         self.color = color
         self.draw_function = draw_function

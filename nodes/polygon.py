@@ -4,7 +4,7 @@ from nodes.scene_node import SceneNode
 
 
 class Polygon(SceneNode):
-    def __init__(self, vertices_getter, draw_function = pygame.gfxdraw.polygon, color = (255, 255, 255, 255)):
+    def __init__(self, vertices_getter, draw_function = pygame.gfxdraw.filled_polygon, color = (255, 255, 255, 255)):
         self.__vertices_getter = vertices_getter
         self.__vertices = vertices_getter()
         self.color = color

@@ -27,6 +27,10 @@ class LevelSelectionScene(Scene):
         self.event_handlers.append(
             KeyboardEventHandler(key_code=pygame.K_RETURN, handler=self.start_level)
         )
+        self.event_handlers.append(
+            KeyboardEventHandler(key_code=pygame.K_SPACE, handler=self.start_level)
+        )
+
 
     def update_level_text(self):
         self.level_text = self.font.render(f"<< Level {self.selected_level} >>", 1, (0,255,255))

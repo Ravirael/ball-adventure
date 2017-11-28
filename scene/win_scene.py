@@ -10,7 +10,6 @@ class WinScene(Scene):
         "FANTASTIC!",
         "AWESOME!",
         "WOW!",
-        "THAT'S NEAT!",
         "TERRIFIC!"
     ]
 
@@ -18,7 +17,7 @@ class WinScene(Scene):
         self.underlying_scene = underlying_scene
         self.scene_controller = scene_controller
         font = pygame.font.SysFont("monospace", bold=True, size=96)
-        self.text = font.render(random.choice(WinScene.possible_texts), 1, (0,255,255))
+        self.text = font.render(random.choice(WinScene.possible_texts), 1, (255,0,0))
 
     def update(self, dt):
         self.underlying_scene.update(dt)

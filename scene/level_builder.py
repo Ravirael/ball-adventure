@@ -7,6 +7,7 @@ from coordinate_system import CoordinateSystem
 from event_handlers.drag_handler import DragHandler
 from event_handlers.keyboard_event_handler import KeyboardEventHandler
 from event_handlers.rotation_handler import RotationHandler
+from nodes.background import Background
 from nodes.nodes_factory import NodesFactory
 from nodes.circle import Circle
 from scene.scene import Scene
@@ -29,14 +30,13 @@ class LevelBuilder:
         self.nodes_factory = NodesFactory(space=self.space, coordinate_system=self.coordinate_system)
         self.win_callback = lambda x: None
 
+        self.nodes.append(Background())
+
         ball, circle = self.nodes_factory.create_ball(radius=16)
         self.ball_body = circle.body
         self.nodes.append(ball)
 
-        self.event_handlers += [
-        KeyboardEventHandler(
-            key_code=pygame.K_SPACE,
-            handler=lambda: self.scene_controller.push(
+        run_handler = lambda: self.scene_controller.push(
                 SimulationScene(
                     ball_body=self.ball_body,
                     nodes=self.nodes,
@@ -44,6 +44,15 @@ class LevelBuilder:
                     scene_controller=self.scene_controller
                 )
             )
+
+        self.event_handlers += [
+        KeyboardEventHandler(
+            key_code=pygame.K_SPACE,
+            handler=run_handler
+        ),
+        KeyboardEventHandler(
+            key_code=pygame.K_RETURN,
+            handler=run_handler
         ),
         KeyboardEventHandler(
             key_code=pygame.K_ESCAPE,
@@ -94,7 +103,7 @@ class LevelBuilder:
             position=position,
             elasticity=elasticity
         )
-        node.color = (0, 255, 255, 255)
+        node.color = (0, 255, 0, 255)
         shape.body.angle = rotation
         self.event_handlers.append(DragHandler(shape=shape, coordinate_system=self.coordinate_system))
         self.event_handlers.append(RotationHandler(shape=shape, coordinate_system=self.coordinate_system))
