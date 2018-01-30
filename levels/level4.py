@@ -13,17 +13,22 @@ level4.draggable_objects = [
         "position": (1040, 500),
         "size": (50, 20),
         "rotation": Angle.from_degrees(90)
+    },
+    {
+        "position": (1080, 500),
+        "size": (50, 20),
+        "rotation": Angle.from_degrees(90)
     }
 ]
 level4.static_objects = [
     {
         "position": (200, 75),
-        "size": (800, 20),
+        "size": (1400, 20),
         "rotation": Angle.from_degrees(30)
     },
     {
-        "position": (800, 500),
-        "size": (500, 20),
+        "position": (830, 250),
+        "size": (300, 20),
         "rotation": Angle.from_degrees(90)
     }
 ]
